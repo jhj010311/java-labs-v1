@@ -50,6 +50,8 @@ public class TypeCasting {
         System.out.println("\n===== 연산에서의 형변환 =====");
         
         // 정수 연산 (int보다 작은 타입(byte, short, char)은 int로 변환 후 연산)
+        // 자주 헷갈리는 파트
+
         byte b1 = 10;
         byte b2 = 20;
         // byte b3 = b1 + b2;  // 컴파일 에러! b1과 b2는 int로 변환 후 연산됨
@@ -59,7 +61,11 @@ public class TypeCasting {
         System.out.println("b1 + b2 (int 결과): " + i3);
         System.out.println("b1 + b2 (byte로 캐스팅): " + b3);
         
+        
+        
         // 정수와 실수 연산 (실수 타입으로 자동 형변환 후 연산)
+        // 자주 헷갈리는 파트
+        
         int i4 = 10;
         double d4 = 3.5;
         double result1 = i4 + d4;  // i4가 double로 자동 형변환 후 연산

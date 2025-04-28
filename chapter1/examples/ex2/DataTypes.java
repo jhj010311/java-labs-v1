@@ -4,7 +4,10 @@ package chapter1.examples.ex2;
  * 자바의 기본 데이터 타입과 변수 사용 예제
  */
 public class DataTypes {
-    public static void main(String[] args) {
+    public static void main(String[] args) {    // 프로그램의 시작은 항상 public static void main 메서드
+        // 변수는 stack에 저장된다
+        // 변수가 어떤 이유로 사라질 때 stack에서도 사라진다 >> 변수 스코프의 문제 발생
+        
         // 정수형 데이터 타입
         byte byteValue = 10;            // 1바이트, -128 ~ 127
         short shortValue = 1000;        // 2바이트, -32,768 ~ 32,767

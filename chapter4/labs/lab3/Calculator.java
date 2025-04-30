@@ -7,15 +7,24 @@ package chapter4.labs.lab3;
  */
 public class Calculator {
     // TODO: PI 값을 나타내는 static final 상수를 정의하세요.
+    public static final double PI = 3.14159;
     
     
     // TODO: 인스턴스 변수를 정의하세요. (계산기 모델명, 계산 횟수 등)
+    public String model;
+    public int calcCount;
     
     
     // TODO: 계산기 객체의 총 개수를 나타내는 static 변수를 정의하세요.
+    public static int calculatorCount = 0;
     
     
     // TODO: 생성자를 정의하고, 객체가 생성될 때마다 계산기 개수를 증가시키세요.
+    Calculator() {
+        this.model = "SeSacSSEACCC";
+        this.calcCount = 0;
+        calculatorCount++;
+    }
     
     
     // TODO: 원의 면적을 계산하는 static 메소드를 정의하세요.

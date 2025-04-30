@@ -1,5 +1,6 @@
 package chapter3.labs.lab5;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -31,11 +32,48 @@ public class StudentManagementSystem {
                 case 1:
                     // TODO: 성적 입력 기능을 구현하세요.
                     // 학생 이름과 성적을 입력받아 배열에 저장합니다.
+                    System.out.println("(학생 성적) 형식으로 입력해주십시오  (ex) 홍길동 96");
+                    System.out.println("입력을 중단하시려면 exit을 입력해주십시오");
+
+                    while (studentCount < MAX_STUDENTS) {
+                        String input = scanner.nextLine();
+                        String[] splitted = input.split(" ");
+
+                        if (splitted[0].equals("exit")) {
+                            break;
+                        } else {
+                            names[studentCount] = splitted[0];
+                            scores[studentCount] = Integer.parseInt(splitted[1]);
+                        }
+                    }
+
+                    System.out.println("성적 입력이 종료되었습니다\n");
                     
                     break;
                 case 2:
                     // TODO: 성적 수정 기능을 구현하세요.
                     // 학생 이름을 입력받아 해당 학생의 성적을 수정합니다.
+                    System.out.println("학생의 이름을 입력해주십시오");
+
+                    String input = scanner.nextLine();
+                    boolean found = false;
+
+                    for (int i  = 0; i < MAX_STUDENTS; i++) {
+                        if (names[i].equals(input)) {
+                            found = true;
+                            System.out.println("성적을 입력해주십시오");
+                            scores[i] = scanner.nextInt();
+                            scanner.nextLine();
+
+                            System.out.println("성적 수정이 정상적으로 완료되었습니다");
+                        }
+                    }
+                    
+                    if (!found) {
+                        System.out.println("해당하는 학생을 찾지 못했습니다");
+                    }
+
+                    System.out.println("성적 수정이 종료되었습니다");
                     
                     break;
                 case 3:
@@ -93,9 +131,22 @@ public class StudentManagementSystem {
     
     // TODO: 성적으로부터 등급을 계산하는 메소드를 구현하세요.
     // 입력받은 성적에 따라 Grade Enum 상수를 반환합니다.
+
+    private static Grade getGradeFromScore(int score) {
+        return Grade.getGradeFromScore(score);
+    }
     
     
     // TODO: 전체 성적의 합계를 계산하는 메소드를 구현하세요.
+    private static int getScoreSum(int[] scores) {
+        int sum = 0;
+
+        for (int score : scores) {
+            sum += score;
+        }
+
+        return sum;
+    }
     
     
     // TODO: 전체 성적의 평균을 계산하는 메소드를 구현하세요.
@@ -110,4 +161,4 @@ public class StudentManagementSystem {
     // TODO: 학생 이름으로 배열에서 위치(인덱스)를 찾는 메소드를 구현하세요.
     
     
-} 
+}

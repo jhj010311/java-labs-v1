@@ -44,6 +44,7 @@ public class StudentManagementSystem {
                         } else {
                             names[studentCount] = splitted[0];
                             scores[studentCount] = Integer.parseInt(splitted[1]);
+                            studentCount++;
                         }
                     }
 
@@ -80,16 +81,81 @@ public class StudentManagementSystem {
                     // TODO: 성적 조회 기능을 구현하세요.
                     // 모든 학생의 이름, 성적, 등급을 출력합니다.
                     // 전체 성적의 합계, 평균, 최고 성적, 최저 성적도 출력합니다.
-                    
+                    System.out.println("성적 조회를 시작합니다\n");
+
+                    System.out.println("이름\t\t성적\t\t등급");
+
+                    for (int i = 0; i < MAX_STUDENTS; i++) {
+                        System.out.println(names[i] + "\t\t" + scores[i] + "\t\t" + getGradeFromScore(scores[i]));
+                    }
+
+                    int sum = getScoreSum(scores);
+
+                    System.out.println("\n전체 성적 합계 : " + sum);
+                    System.out.println("전체 성적 평균 : " + getAverage(sum));
+                    System.out.println("최고 성적 : " + getMaxScore(scores));
+                    System.out.println("최저 성적 : " + getMinScore(scores));
+
+                    System.out.println("\n성적 조회 종료");
+
                     break;
                 case 4:
                     // TODO: 검색 기능을 구현하세요.
                     // 학생 이름을 입력받아 해당 학생의 성적과 등급을 조회합니다.
+                    System.out.println("성적 검색을 시작합니다");
+                    System.out.println("학생 이름을 입력해주세요");
+
+                    String search = scanner.nextLine();
+
+                    int index = getIndexByName(search);
+
+                    if(index != -1) {
+                        System.out.println(names[index] + "\t\t" + scores[index] + "\t\t" + getGradeFromScore(scores[index]));
+                    } else {
+                        System.out.println("해당하는 학생이 없습니다");
+                    }
+
+                    System.out.println("성적 검색 종료");
                     
                     break;
                 case 5:
                     // TODO: 통계 기능을 구현하세요.
                     // 등급별 학생 수와 비율을 출력합니다.
+                    System.out.println("통계 출력을 시작합니다\n");
+
+                    int[] gradeCount = new int[5];
+
+                    for (int i = 0; i < MAX_STUDENTS; i++) {
+                        Grade grade = getGradeFromScore(scores[i]);
+
+                        switch (grade) {
+                            case A:
+                                gradeCount[0]++;
+                                break;
+                            case B:
+                                gradeCount[1]++;
+                                break;
+                            case C:
+                                gradeCount[2]++;
+                                break;
+                            case D:
+                                gradeCount[3]++;
+                                break;
+                            case F:
+                                gradeCount[4]++;
+                                break;
+                            default:
+                                System.out.println("등급 오류 발생 >> " + names[i] + "(" + i + ")");
+                        }
+                    }
+
+                    System.out.println("A등급 : " + gradeCount[0] + "명, " + (gradeCount[0] / studentCount * 100) + "%");
+                    System.out.println("B등급 : " + gradeCount[1] + "명, " + (gradeCount[1] / studentCount * 100) + "%");
+                    System.out.println("C등급 : " + gradeCount[2] + "명, " + (gradeCount[2] / studentCount * 100) + "%");
+                    System.out.println("D등급 : " + gradeCount[3] + "명, " + (gradeCount[3] / studentCount * 100) + "%");
+                    System.out.println("F등급 : " + gradeCount[4] + "명, " + (gradeCount[4] / studentCount * 100) + "%");
+
+                    System.out.println("\n통계 출력 종료");
                     
                     break;
                 case 6:
@@ -150,15 +216,47 @@ public class StudentManagementSystem {
     
     
     // TODO: 전체 성적의 평균을 계산하는 메소드를 구현하세요.
+    private static float getAverage(int sum) {
+        return (float) sum / studentCount;
+    }
     
     
     // TODO: 최고 성적을 찾는 메소드를 구현하세요.
+    private static int getMaxScore(int[] scores) {
+        int max = scores[0];
+        for (int score : scores) {
+            if (score > max) {
+                max = score;
+            }
+        }
+
+        return max;
+    }
     
     
     // TODO: 최저 성적을 찾는 메소드를 구현하세요.
+    private static int getMinScore(int[] scores) {
+        int min = scores[0];
+        for (int score : scores) {
+            if (score < min) {
+                min = score;
+            }
+        }
+
+        return min;
+    }
     
     
     // TODO: 학생 이름으로 배열에서 위치(인덱스)를 찾는 메소드를 구현하세요.
+    private static int getIndexByName(String search) {
+        for (int i = 0; i < MAX_STUDENTS; i++) {
+            if (names[i].equals(search)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
     
     
 }

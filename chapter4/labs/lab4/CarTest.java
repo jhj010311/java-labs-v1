@@ -11,19 +11,25 @@ public class CarTest {
         
         // TODO: Car 객체를 생성하세요. (내부적으로 Engine 객체 포함)
         // 예: new Car("Sonata", "Black", "Gasoline", 180)
+        Car sonata = new Car("Sonata", "Black", "Gasoline", 180);
         
         
         
         // TODO: Driver 객체를 생성하세요.
         // 예: new Driver("John", 5)
+        Driver john = new Driver("John", 5);
         
         
         
         // TODO: Car 객체의 정보를 출력하세요.
+        sonata.carInfo();
         
         
         
         // TODO: Car 객체의 메소드를 호출하세요. (시동, 가속 등)
+        sonata.startUp();
+        sonata.accelerate(30);
+        sonata.carInfo();
         
         
         

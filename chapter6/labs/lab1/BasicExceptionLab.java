@@ -1,5 +1,6 @@
 package chapter6.labs.lab1;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -13,6 +14,7 @@ public class BasicExceptionLab {
         System.out.println("Lab 1: 기본 예외처리 실습");
         
         // TODO: Scanner 객체를 생성하세요.
+        Scanner scanner = new Scanner(System.in);
         
         
         // TODO: try-catch-finally 구문을 작성하세요.
@@ -23,7 +25,27 @@ public class BasicExceptionLab {
         //    - NumberFormatException: 숫자가 아닌 값을 입력한 경우
         //    - 기타 예외: 기타 모든 예외 상황
         // 4. finally 블록에서 Scanner 객체를 닫고 프로그램 종료 메시지를 출력하세요.
+
+        try{
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+
+            System.out.println(a / b);
+        } catch (ArithmeticException e) {
+            System.out.println("0으로 나눌 수 없습니다");
+            e.getMessage();
+        } catch (InputMismatchException e) {
+            System.out.println("숫자를 입력해주세요");
+            e.getMessage();
+        } catch (Exception e) {
+            e.getMessage();
+        } finally {
+            scanner.close();
+            System.out.println("스캐너 close");
+            System.out.println("프로그램을 종료합니다");
+        }
+
         
-        
+        // NumberFormatException은 parseInt 등에서 발생
     }
 } 

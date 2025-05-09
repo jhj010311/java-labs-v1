@@ -106,4 +106,20 @@ public class BankingSystem {
             System.out.println(account);
         }
     }
-} 
+
+    public void deposit(String accountNumber, int amount) throws InvalidAccountException {
+        BankAccount account = getAccount(accountNumber);
+
+        account.deposit(amount);
+
+        System.out.println(account.getAccountNumber() + "계좌로 입금 완료 되었습니다 : " + amount + "원" );
+    }
+
+    public void withdraw(String accountNumber, int amount) throws InvalidAccountException, InsufficientBalanceException {
+        BankAccount account = getAccount(accountNumber);
+
+        account.withdraw(amount);
+
+        System.out.println(account.getAccountNumber() + "계좌에서 출금 완료 되었습니다 : " + amount + "원" );
+    }
+}

@@ -116,31 +116,68 @@ public class BankingApp {
         System.out.println("===계좌 정보===");
         System.out.println(account.toString());
     }
-    
+
     /**
      * 입금 메소드
      */
     private static void deposit(Scanner scanner, BankingSystem bankingSystem) {
-        // TODO: 사용자로부터 계좌번호와 입금액을 입력받아 입금 처리하세요.
-        // TODO: InvalidAccountException과 IllegalArgumentException을 처리하세요.
-        
+        try {
+            System.out.print("계좌번호 : ");
+            String accountNumber = scanner.nextLine();
+            System.out.print("입금액 : ");
+            int amount = Integer.parseInt(scanner.nextLine());
+
+            bankingSystem.deposit(accountNumber, amount);
+            System.out.println("입금이 완료되었습니다.");
+        } catch (InvalidAccountException e) {
+            System.out.println("계좌 오류: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
+        }
     }
-    
+
     /**
      * 출금 메소드
      */
     private static void withdraw(Scanner scanner, BankingSystem bankingSystem) {
-        // TODO: 사용자로부터 계좌번호와 출금액을 입력받아 출금 처리하세요.
-        // TODO: InvalidAccountException, InsufficientBalanceException, IllegalArgumentException을 처리하세요.
-        
+        try {
+            System.out.print("계좌번호 : ");
+            String accountNumber = scanner.nextLine();
+            System.out.print("출금액 : ");
+            int amount = Integer.parseInt(scanner.nextLine());
+
+            bankingSystem.withdraw(accountNumber, amount);
+            System.out.println("출금이 완료되었습니다.");
+        } catch (InvalidAccountException e) {
+            System.out.println("계좌 오류: " + e.getMessage());
+        } catch (InsufficientBalanceException e) {
+            System.out.println("잔액 부족: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
+        }
     }
-    
+
     /**
      * 계좌 이체 메소드
      */
     private static void transfer(Scanner scanner, BankingSystem bankingSystem) {
-        // TODO: 사용자로부터 출금 계좌번호, 입금 계좌번호, 이체 금액을 입력받아 이체 처리하세요.
-        // TODO: InvalidAccountException, InsufficientBalanceException, IllegalArgumentException을 처리하세요.
-        
+        try {
+            System.out.print("출금 계좌번호 : ");
+            String fromAccount = scanner.nextLine();
+            System.out.print("입금 계좌번호 : ");
+            String toAccount = scanner.nextLine();
+            System.out.print("이체 금액 : ");
+            int amount = Integer.parseInt(scanner.nextLine());
+
+            bankingSystem.transfer(fromAccount, toAccount, amount);
+            System.out.println("이체가 완료되었습니다.");
+        } catch (InvalidAccountException e) {
+            System.out.println("계좌 오류: " + e.getMessage());
+        } catch (InsufficientBalanceException e) {
+            System.out.println("잔액 부족: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력 오류: " + e.getMessage());
+        }
     }
+
 } 

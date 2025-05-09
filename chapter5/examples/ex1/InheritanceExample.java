@@ -14,10 +14,11 @@ public class InheritanceExample {
         
         System.out.println("\n===== Student 객체 생성 =====");
         Student student = new Student("전옥길", 20, "202401234", "컴퓨터공학");
-        
+
         System.out.println("\n===== Student 메소드 호출 =====");
         // Person 클래스에서 상속받은 메소드 호출
         student.introduce();
+
         student.eat();
         student.sleep();
         
@@ -30,6 +31,6 @@ public class InheritanceExample {
         // instanceof 연산자를 사용한 객체 타입 확인
         System.out.println("person은 Person의 인스턴스인가? " + (person instanceof Person));
         System.out.println("student는 Student의 인스턴스인가? " + (student instanceof Student));
-        System.out.println("student는 Person의 인스턴스인가? " + (student instanceof Person));
+        System.out.println("student는 Person의 인스턴스인가? " + (person instanceof Student));
     }
 } 

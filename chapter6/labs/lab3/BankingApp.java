@@ -90,16 +90,31 @@ public class BankingApp {
     private static void createAccount(Scanner scanner, BankingSystem bankingSystem) {
         // TODO: 사용자로부터 계좌번호, 예금주 이름, 초기 잔액을 입력받아 계좌를 생성하세요.
         // TODO: IllegalArgumentException을 처리하세요.
-        
+
+        System.out.print("계좌번호 : ");
+        String accountNumber = scanner.nextLine();
+        System.out.print("예금주 이름 : ");
+        String ownerName = scanner.nextLine();
+        System.out.print("초기잔액 : ");
+        int initialBalance = Integer.parseInt(scanner.nextLine());
+
+        bankingSystem.createAccount(accountNumber, ownerName, initialBalance);
+
     }
     
     /**
      * 계좌 조회 메소드
      */
-    private static void viewAccount(Scanner scanner, BankingSystem bankingSystem) {
+    private static void viewAccount(Scanner scanner, BankingSystem bankingSystem) throws InvalidAccountException {
         // TODO: 사용자로부터 계좌번호를 입력받아 계좌 정보를 조회하세요.
         // TODO: InvalidAccountException을 처리하세요.
-        
+        System.out.print("계좌번호 : ");
+        String accountNumber = scanner.nextLine();
+
+        BankAccount account = bankingSystem.getAccount(accountNumber);
+
+        System.out.println("===계좌 정보===");
+        System.out.println(account.toString());
     }
     
     /**

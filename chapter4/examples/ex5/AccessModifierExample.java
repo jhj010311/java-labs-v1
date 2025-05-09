@@ -1,5 +1,7 @@
 package chapter4.examples.ex5;
 
+import chapter4.examples.ex5.other.OtherClass;
+
 /**
  * 접근 제한자 활용 예제
  */

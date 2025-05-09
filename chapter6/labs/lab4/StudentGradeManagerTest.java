@@ -10,6 +10,8 @@ import java.util.Scanner;
  */
 public class StudentGradeManagerTest {
     public static void main(String[] args) {
+        int a = 0;
+        int b = 1;
         System.out.println("Lab 4: 디버깅 실습");
         System.out.println("학생 성적 관리 프로그램을 테스트합니다.");
         

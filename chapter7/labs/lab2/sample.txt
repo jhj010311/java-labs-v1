@@ -1,0 +1,5 @@
+1. 검색 기능까지 구현 완료search
+2. 여기를 Search하고 저기도 search하고
+3. 여기도 search해보고 이거도 SSeearchhh해보고
+4. search가 잘 되어야 Search를 한다
+5. 검색 종료

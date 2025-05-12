@@ -7,6 +7,9 @@ package chapter5.labs.lab2solved;
  * 이 클래스는 Animal 추상 클래스를 상속받아야 합니다.
  */
 public class Dog extends Animal {
+    public Dog() {
+        super("name", 0);
+    }
     // TODO: 강아지의 추가 속성 정의 (예: 품종)
     
     

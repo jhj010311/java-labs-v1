@@ -39,7 +39,7 @@ public class PairTest {
 
         
         // 숫자 타입의 sum 메소드 테스트
-        int sum = PairUtils.sum(pairII);
+        double sum = PairUtils.sum(pairII);
         System.out.println("\nint sum = PairUtils.sum(pairII);");
         System.out.println("sum : " + sum);
 

@@ -1,4 +1,4 @@
-package chapter7.labs.lab1;
+package chapter7.labs.lab1solved;
 
 import java.util.ArrayList;
 import java.util.HashMap;

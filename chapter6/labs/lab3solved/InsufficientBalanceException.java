@@ -1,4 +1,4 @@
-package chapter6.labs.lab3;
+package chapter6.labs.lab3solved;
 
 /**
  * 잔액 부족 예외 클래스

@@ -136,11 +136,11 @@ public class BufferedReaderWriterExample {
         long startTime = System.currentTimeMillis();
         
         try (
-            FileReader reader = new FileReader(fileName);
-            BufferedReader bufferedReader = new BufferedReader(reader)
+            FileReader reader = new FileReader(fileName); // 메인 스트림
+            BufferedReader bufferedReader = new BufferedReader(reader) // 보조 스트림
         ) {
             int charCount = 0;
-            char[] buffer = new char[8192]; // 8KB 버퍼
+            char[] buffer = new char[20000]; // 8KB 버퍼
             int charsRead;
             
             // 버퍼 단위로 읽기

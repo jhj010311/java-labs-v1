@@ -14,11 +14,11 @@ public class WrapperClassExample {
         System.out.println("박싱된 Integer: " + boxed);
 
         // 언박싱
-        int unboxed = boxed.intValue();
+        int unboxed = boxed.intValue(); // 객체타입 -> 기본타입
         System.out.println("언박싱된 int: " + unboxed);
 
         // 자동 박싱 & 언박싱
-        Integer autoBoxed = 200;
+        Integer autoBoxed = 200; // 정수형 리터럴 = 기본값
         int autoUnboxed = autoBoxed;
         System.out.println("자동 박싱: " + autoBoxed);
         System.out.println("자동 언박싱: " + autoUnboxed);

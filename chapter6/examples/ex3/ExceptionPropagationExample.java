@@ -1,5 +1,7 @@
 package chapter6.examples.ex3;
 
+import chapter6.examples.ex4.CustomException;
+
 /**
  * 예외 던지기 및 전파 예제
  * 
@@ -9,7 +11,7 @@ package chapter6.examples.ex3;
 public class ExceptionPropagationExample {
     public static void main(String[] args) {
         System.out.println("=== 예외 던지기 및 전파 예제 ===");
-        
+
         try {
             // 메소드 체인 시작
             methodA();

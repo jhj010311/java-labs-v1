@@ -8,7 +8,7 @@ public class FinalExample {
     public static final double PI = 3.14159265359;
     
     // final 필드 - 선언만 하고 생성자에서 초기화 가능
-    private final String name;
+    private String name;
     
     // final 필드 - 객체 참조 타입(참조 변수는 변경 불가, 객체 내용은 변경 가능)
     private final StringBuilder builder;
@@ -46,11 +46,15 @@ public class FinalExample {
     public static void main(String[] args) {
         FinalExample example = new FinalExample("John");
         example.printInfo();
-        
+
+        example.name = "Zack";
+
+
         // final 필드 활용
         // example.name = "Robert"; // 에러: final 필드는 값 변경 불가
         
         // final 참조 변수의 객체 내용 변경
+//        example.builder = null;
         example.appendToBuilder("World");
         example.printInfo();
         

@@ -1,4 +1,4 @@
-package chapter6.labs.lab3;
+package chapter6.labs.lab3solved;
 
 /**
  * 유효하지 않은 계좌 예외 클래스

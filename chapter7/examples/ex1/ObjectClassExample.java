@@ -42,6 +42,9 @@ public class ObjectClassExample {
         // clone() 메소드 사용 예
         try {
             System.out.println("\n=== clone 메소드 ===");
+
+            product2 = product3;
+
             CloneableProduct cloneableProduct = new CloneableProduct("태블릿", 800000, "전자제품");
             CloneableProduct clonedProduct = (CloneableProduct) cloneableProduct.clone();
             

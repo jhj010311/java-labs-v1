@@ -1,7 +1,13 @@
 package chapter9.labs.lab2;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 스트림 API 활용 실습
@@ -43,14 +49,17 @@ public class StreamLab {
         
         // TODO: 1에서 20까지의 정수 스트림을 생성하여 출력하세요.
         // 힌트: IntStream.rangeClosed(1, 20)...
+        IntStream.rangeClosed(1, 20).forEach(num -> System.out.print(num + " "));
         
         // TODO: 문자열 배열에서 스트림을 생성하여 출력하세요.
         String[] subjects = {"국어", "영어", "수학", "과학", "사회"};
         // 힌트: Arrays.stream(subjects)...
+        Arrays.stream(subjects).forEach(str -> System.out.print(str + " "));
         
         // TODO: 리스트에서 스트림을 생성하여 출력하세요.
-        List<String> cities = Arrays.asList("서울", "부산", "인천", "대구", "대전", "광주", "울산", "세종");
+        List<String> cities = Arrays.asList("seoul", "busan", "인천", "대구", "대전", "광주", "울산", "oo");
         // 힌트: cities.stream()...
+        cities.stream().forEach(str -> System.out.print(str + " "));
         
         
         // 2. 중간 연산과 최종 연산 활용
@@ -60,9 +69,14 @@ public class StreamLab {
         
         // TODO: 짝수만 필터링하여 제곱한 후 평균을 계산하세요.
         // 힌트: numbers.stream().filter(...).map(...).average()
+        int sum = numbers.stream().filter(num -> num % 2 == 0).map(num -> num * num).reduce(0, Integer::sum);
+        int sum2 = numbers.stream().filter(num -> num % 2 == 0).mapToInt(num -> num * num).sum();
+
+        System.out.println("짝수 제곱 스트림 합계 : " + sum);
         
         // TODO: 문자열 리스트에서 길이가 3 이상인 문자열만 대문자로 변환하세요.
         // 힌트: cities.stream().filter(...).map(...)
+        cities.stream().filter(str -> str.length() > 3).map(String::toUpperCase).forEach(System.out::println);
         
         
         // 3. 객체 스트림 처리
@@ -82,12 +96,30 @@ public class StreamLab {
         
         // TODO: 학과별로 그룹화하여 학생 수를 계산하세요.
         // 힌트: students.stream().collect(Collectors.groupingBy(..., Collectors.counting()))
+        students.stream().collect(Collectors.groupingBy(Student::getDepartment, Collectors.counting()))
+                .forEach((department, count) -> System.out.println(department + "의 학생 수 : " + count));
         
         // TODO: 학과별로 그룹화한 후 평균 점수를 계산하세요.
         // 힌트: students.stream().collect(Collectors.groupingBy(..., Collectors.averagingInt(...)))
+        students.stream().collect(Collectors.groupingBy(Student::getDepartment, Collectors.averagingInt(Student::getScore)))
+                .forEach((department, average) -> System.out.println(department + "의 평균 : " + average));
         
         // TODO: 학년별로 그룹화한 후 최고 점수를 받은 학생을 찾으세요.
         // 힌트: students.stream().collect(Collectors.groupingBy(..., Collectors.maxBy(...)))
+        students.stream().collect(Collectors.groupingBy(Student::getGrade, Collectors.maxBy(Comparator.comparingInt(Student::getScore))))
+                .forEach((grade, name) -> System.out.println(grade + "학년에서 최고점을 받은 " + name + " 학생"));
+
+        students.stream().collect(Collectors.groupingBy(
+                                    Student::getGrade,
+                Collectors.collectingAndThen(
+                                Collectors.maxBy(Comparator.comparingInt(Student::getScore)),
+                                Optional::get // Optional<Student> → Student
+                        )))
+                .forEach((grade, name) -> System.out.println(grade + "학년에서 최고점을 받은 " + name + " 학생"));
+
+        // Optional<Student> → Student
+        students.stream().collect(Collectors.toMap(Student::getGrade, Function.identity(), BinaryOperator.maxBy(Comparator.comparingInt(Student::getScore))))
+                .forEach((grade, name) -> System.out.println(grade + "학년에서 최고점을 받은 " + name + " 학생"));
         
         
         // 4. 텍스트 파일 단어 빈도수 계산
@@ -101,6 +133,9 @@ public class StreamLab {
                     
         // TODO: 텍스트에서 단어를 추출하여 빈도수를 계산하세요. (대소문자 구분 없이)
         // 힌트: Arrays.stream(text.split("\\s+|\\.|,")).filter(...).collect(Collectors.groupingBy(...))
+        Arrays.stream(text.split("\\s+|\\.|,")).filter(str -> !str.isEmpty())
+                .collect(Collectors.groupingBy(String::toUpperCase, Collectors.counting()))
+                .forEach((str, count) -> System.out.println("\"" + str + "\"의 등장빈도 : " + count));
 
     }
 } 
